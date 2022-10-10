@@ -1,88 +1,80 @@
 1. 
-var vegetables = ['Капуста', 'Репа', 'Редиска', 'Морковка'];
+let vegetables = ['Капуста', 'Репа', 'Редиска', 'Морковка'];
+
 function arrayClone(arr) {
-    return arr.slice();
+    return arr.slice(0);
 }
 
-var arr1 = arrayClone(vegetables);
+let arrayOne = arrayClone(vegetables);
+
+console.log(arrayOne);
+
 
 2. 
-var vegetables = ['Капуста', 'Репа', 'Редиска', 'Морковка'];
+let vegetables = ['Капуста', 'Репа', 'Редиска', 'Морковка'];
 
 let stringOne = vegetables.toString();
-let stringTw0 = vegetables.join()
-document.writeln(str1); 
-document.writeln(str2); 
+let stringTwo = vegetables.join();
+
+console.log(stringOne);
+console.log(stringTwo);
+
 
 3. 
-const num = prompt('Введите число', 55);
+const num = prompt('Введите число', '');
 
 function colonOdd (num) {
-  let str = num.toString();
-  let result = [str[0]];
-  for(var i=1; i<str.length; i++) {
-      if((str[i-1]%2 !== 0)&&(str[i]%2 !== 0)) {
-        result.push(':', str[i]);
-       }
-      else {
-        result.push(str[i]);
-      }
-  }
-  return result.join('');  
+return num.split('')
+.map((item, index, array) => array[index] % 2 == 1 && array[index + 1] % 2 == 1 ? item + ':': item)
+.join('');
 }
 
-4.
+console.log(colonOdd(num));
+
+
+ 4.
 const str = prompt('Введите слово', 'КаЖдЫй ОхОтНиК');
 
 function changeRegister (str) {
-let UPPER = 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ';
-let LOWER = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя';
-let result = [];
-  
-  for(var i=0; i<str.length; i++) {
-    if(UPPER.includes(str[i])) {
-      result.push(str[i].toLowerCase());
-    }
-    else if(LOWER.includes(str[i])) {
-      result.push(str[i].toUpperCase());
-    }
-    else {
-      result.push(str[i]);
-    }
-  }
-  return result.join('');
-};
+let result = ''
+for(let i = 0; i < str.length; i++) {
+if(str[i] === str[i].toUpperCase()) {
+result += str[i].toLowerCase();
+} else {
+result += str[i].toUpperCase();
+}
+}
+return result.split();
+}
+
+console.log(changeRegister(str));
+
 
 5. 
-var arr = ["php", "php", "css", "css",
+let arr = ["php", "php", "css", "css",
 "script", "script", "html", "html", "java"
 ];
-
 function removeDuplicates(arr) {
-var obj = {},
-    out=[];
-for (var i = 0; i < arr.length; i++) {
-  var str = arr[i];
-  obj[str] = true; 
+let res = [];
+for(let i = 0; i < arr.length; i++) {
+if(res.includes(arr[i]) === false) {
+res.push(arr[i])
 }
-   for (i in obj) {
-     out.push(i);
-   }
-   return out;
+}
+return res;
 }
 
-result = removeDuplicates(arr);
-document.writeln(arr + '<br>'); 
-document.writeln(result);       
+console.log(removeDuplicates(arr));
+
 
 6. 
-var arr1 = [1, 2, 3, 4, 5];
-var arr2 = [4, 5, 6];
-var arr3 = [];
+let arr1 = [1, 2, 3, 4, 5];
+let arr2 = [4, 5, 6];
+let arr3 = [];
   if (arr1.length > arr2.length) {
-    var count = arr1.length;
+    let count = arr1.length;
   } else {
-    var count = arr2.length;
+    let count = arr2.length;
   }
       for (var i = 0; i < count; i++) {
         if (arr2[i] === undefined) {
@@ -93,85 +85,100 @@ var arr3 = [];
             }
         }
         arr3.push(arr1[i] + arr2[i]);
-      }
-document.writeln(arr3); // [5,7,9,4,5]  
+      }; 
+
+console.log(arr3);
+
 
 7.
 function countIdentic(arr) {
-
-let clone = arr.slice(0),  
-    test = [],             
-    cur,                   
-    count = 0;            
-  
-    while (clone.length) {
-      cur = clone.shift();
-      if (test.indexOf(cur) === -1) {
-        test.push(cur);
-        if (clone.indexOf(cur) >= 0) {
-          count++;
-        }
-      }
-    }
-    return document.writeln(count+'<br>');
+  arr = arr.sort()
+  let newSortArr = [];
+  for (let i = 0; i < arr.length; i++) {
+  if (arr[i] == arr[i + 1]) {
+  newSortArr.push(arr[i])
   }
-  
-  countIdentic([3, 3, 7, 7, 3, 3, 4, 5, 5, 8, 8, 8]) 
-  countIdentic([15,14,13,19,13,14,14,14,7,9,9]) 
+  }
+  let result = newSortArr.filter((item, index) => {
+  return newSortArr.indexOf(item) === index;
+  })
+  return result.length;
+};
 
+countIdentic([3, 3, 7, 7, 3, 3, 4, 5, 5, 8, 8, 8]);
+countIdentic([15,14,13,19,13,14,14,14,7,9,9]);
+
+console.log(countIdentic(arr))
 
 
 8.
-function compareNumbers(arr){
-    var arr = arr.sort(function(a,b){return a-b})
-    document.writeln(arr)
+var numbers = [3, 8, 7, 6, 5, -4, 3, 2, 1];  
+
+function compareNumbers(arr) {
+  for (let i = 0; i < arr.length - 1; i++) {
+  for (let j = i + 1; j < arr.length; j++) {
+  const a = arr[i];
+  const b = arr[j];
+  if (a > b) {
+  arr[i] = b;
+  arr[j] = a;
   }
-  
-  var numbers = [3, 8, 7, 6, 5, -4, 3, 2, 1];
-  
-  compareNumbers(numbers);
+  }
+  }
+  return arr;
+  }
 
+  console.log(compareNumbers(numbers));
 
+  
 9.
-var litmir = [
-    { author: 'Хэленка', title: 'Улетела сказка'},
-    { author: 'Коул Кресли', title: 'Восстание Аркан'},
-    { author: 'Райчел Мид', title: 'Золотая лилия'}
-    ];
- 
- function compare(a,b)
-  {
-   if (a.title < b.title)
-     return -1;
-   if (a.title > b.title)
-     return 1;
-   return 0;
-  }
- 
- litmir.sort(compare);
- 
- for(var i = 0; i < litmir.length; i++) {
-   document.writeln(litmir[i].title); 
- }
+let litmir = [
+  { author: 'Хэленка', title: 'Улетела сказка'},
+  { author: 'Коул Кресли', title: 'Восстание Аркан'},
+  { author: 'Райчел Мид', title: 'Золотая лилия'}
+  ];
+
+function compare(a,b)
+{
+ if (a.title < b.title)
+   return -1;
+ if (a.title > b.title)
+   return 1;
+ return 0;
+}
+
+litmir.sort(compare);
+
+for(var i = 0; i < litmir.length; i++) {
+ document.writeln(litmir[i].title); 
+}
+
+console.log(litmir);
+
 
 10.
-var litmir = [
-    { author: 'Хэленка', title: 'Улетела сказка'},
-    { author: 'Коул Кресли', title: 'Восстание Аркан'},
-    { author: 'Райчел Мид', title: 'Золотая лилия'}
-    ];
+let litmir = [
+  { author: 'Хэленка', title: 'Улетела сказка'},
+  { author: 'Коул Кресли', title: 'Восстание Аркан'},
+  { author: 'Райчел Мид', title: 'Золотая лилия'}
+  ];
+
+function propertyValue(array, key) {
+   const arr = [];
+   let index = -1;
+   let item;
+
+   while (++index < array.length) {
+   item = array[index];
+
+     if (item.hasOwnProperty(key)) {
+      arr[arr.length] = item[key];
+     }
+   }
+
+   return arr;
+};
+
+console.log(propertyValue(litmir, 'title'));;
+console.log(propertyValue(litmir, 'author'));;
  
- function compare(a,b)
-  {
-   if (a.title < b.title)
-     return -1;
-   if (a.title > b.title)
-     return 1;
-   return 0;
-  }
- 
- litmir.sort(compare);
- 
- for(var i = 0; i < litmir.length; i++) {
-   document.writeln(litmir[i].title); 
- }
